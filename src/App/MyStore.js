@@ -4,26 +4,23 @@ import { useQuery } from 'react-query';
 
 import { devtools, persist } from 'zustand/middleware'
 
-// const fetchPeople = async () => {
-//     const res = await fetch('http://swapi.dev/api/people/');
-//     return res.json();
-// }
 
+const fetchData2 = async () => {
+    const response = await fetch('https://swapi.co/api/people/');
+    const data = await response.json();
+    return data.results;
+}
 
+const ApiCall = (set) => {
+    const { data, status } = useQuery('people', fetchData2);
+    return set({ dataHouse: data });
 
+}
 
 
 const myStore = (set) => ({
-    dataHouse: [],
-    fetchData: async () => {
-        const res = await fetch('http://swapi.dev/api/people/');
-        set({ dataHouse: res.json() });
-    },
-    // addCourse: (course) => {
-    //     set((state) => ({
-    //         dataHouse: [course, ...state.dataHouse],
-    //     }))
-    // },
+    dataHouse: {},
+    fetchdata: ApiCall
 })
 
 const useMyStore = create(
