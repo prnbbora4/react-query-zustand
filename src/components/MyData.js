@@ -1,10 +1,9 @@
 import React from 'react';
-import { useQuery } from 'react-query';
 import useMyStore from '../App/MyStore';
 
 const People = () => {
 
-    const { dataHouse, fetchData, } = useMyStore(
+    const { dataHouse, } = useMyStore(
         (state) => ({
             dataHouse: state.dataHouse,
         })
@@ -15,6 +14,16 @@ const People = () => {
     return (
         <div>
             <h2>People</h2>
+            {
+                dataHouse.results.map((person, index) => {
+                    return (
+                        <div key={index}>
+                            <p>{person.name}</p>
+                        </div>
+                    )
+                })
+            }
+
         </div>
     );
 }

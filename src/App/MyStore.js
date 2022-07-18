@@ -1,12 +1,11 @@
 import React from 'react';
 import create from 'zustand';
 import { useQuery } from 'react-query';
-
 import { devtools, persist } from 'zustand/middleware'
 
 
 const fetchData2 = async () => {
-    const response = await fetch('https://swapi.co/api/people/');
+    const response = await fetch('https://swapi.co/api/people');
     const data = await response.json();
     return data.results;
 }
@@ -19,7 +18,7 @@ const ApiCall = (set) => {
 
 
 const myStore = (set) => ({
-    dataHouse: {},
+    dataHouse: [],
     fetchdata: ApiCall
 })
 
